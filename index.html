@@ -8,8 +8,14 @@
 		<title>Stream Speed Tester</title>
 	</head>
 	<body>
-		<div class="bg"></div>
+		<div id="bg">Freeclick</div>
 		<h1>Streaming Benchmark</h1>
+		<img
+			src="./static/settings.svg"
+			alt="settings cog"
+			class="cog"
+			onclick="openSettings()"
+		/>
 		<div class="stats">
 			<h3>Stats</h3>
 			<div id="speed"></div>
@@ -36,6 +42,24 @@
 				<div class="keyslots">
 					<div class="key-slot"></div>
 					<div class="key-slot"></div>
+				</div>
+			</div>
+		</div>
+		<div id="settings">
+			<div class="card">
+				<img
+					src="./static/close.svg"
+					alt="close button"
+					class="close-settings"
+					onclick="closeSettings()"
+				/>
+				<h2>Settings</h2>
+				<div class="modes">
+					<div class="button" onclick="setMode('freeclick')">
+						Freeclick
+					</div>
+					<div class="button" onclick="setMode('timed')">Timed</div>
+					<div class="button" onclick="setMode('clicks')">Clicks</div>
 				</div>
 			</div>
 		</div>

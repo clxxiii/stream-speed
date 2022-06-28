@@ -4,11 +4,15 @@ let keyUpdater = document.getElementById("key-updater");
 let keySlots = document.getElementsByClassName("key-slot");
 let speedDom = document.getElementById("speed");
 let bpmDom = document.getElementById("bpm");
+let settings = document.getElementById("settings");
+let bg = document.getElementById("bg");
+
 let keysUp = [true, true];
 let hitsound = "key.wav";
 let updatingKeys = false;
 let clickTimes = [];
 let firstClick = 0;
+let mode = "freeclick";
 
 window.addEventListener("keyup", keyUp);
 window.addEventListener("keydown", keyDown);
@@ -88,8 +92,6 @@ function openKeyUpdater() {
 	updatingKeys = true;
 	keys = [];
 	keyUpdater.style.opacity = 1;
-	keyUpdater.style.height = "100%";
-	keyUpdater.style.width = "100%";
 	keyUpdater.style.pointerEvents = "all";
 }
 
@@ -104,6 +106,16 @@ function closeKeyUpdater() {
 	}, 1000);
 }
 
+function openSettings() {
+	settings.style.opacity = 1;
+	settings.style.pointerEvents = "all";
+}
+
+function closeSettings() {
+	settings.style.opacity = 0;
+	settings.style.pointerEvents = "none";
+}
+
 setInterval(() => {
 	let secondsSinceFirstClick = (Date.now() - firstClick) / 1000;
 	let speed = clickTimes.length / secondsSinceFirstClick;
@@ -116,3 +128,18 @@ setInterval(() => {
 	let bpmContent = `${bpm.toFixed(0)} BPM`;
 	if (bpmContent != bpmDom.innerHTML) bpmDom.innerHTML = bpmContent;
 }, 50);
+
+function setMode(newMode) {
+	mode = newMode;
+	bg.textContent = newMode;
+
+	if (mode == "freeclick") {
+		bg.style.filter = "hue-rotate(-126deg)";
+	}
+	if (mode == "timed") {
+		bg.style.filter = "hue-rotate(45deg)";
+	}
+	if (mode == "clicks") {
+		bg.style.filter = "hue-rotate(115deg)";
+	}
+}
