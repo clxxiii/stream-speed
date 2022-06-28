@@ -135,3 +135,9 @@ button:hover {
 	background-color: #333333;
 	color: #ffffff;
 }
+
+#speed,
+#bpm {
+	color: white;
+	font-size: 2em;
+}

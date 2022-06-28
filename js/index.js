@@ -1,12 +1,14 @@
 let keyDom = document.getElementsByClassName("key");
-let keyUp = [true, true];
 let streamerBoxes = document.getElementsByClassName("streamer-box");
 let keyUpdater = document.getElementById("key-updater");
 let keySlots = document.getElementsByClassName("key-slot");
+let speedDom = document.getElementById("speed");
+let bpmDom = document.getElementById("bpm");
+let keyUp = [true, true];
 let hitsound = "key.wav";
 let updatingKeys = false;
 let clickTimes = [];
-let firstClick;
+let firstClick = 0;
 
 let keys = JSON.parse(localStorage.getItem("keys")) || ["Z", "X"];
 updateKeys(keys);
@@ -29,6 +31,17 @@ window.addEventListener("keydown", (key) => {
 
 	let keyIndex = keys.indexOf(keyPressed);
 	if (!keyUp[keyIndex]) return;
+
+	if (
+		!firstClick ||
+		clickTimes[clickTimes.length - 1] + firstClick + 2000 <= Date.now()
+	) {
+		firstClick = Date.now();
+		clickTimes = [];
+		clickTimes.push(0);
+	} else {
+		clickTimes.push(Date.now() - firstClick);
+	}
 
 	keyDom[keyIndex].classList.add("pressed");
 	let hit = new Audio(`../audio/hitsounds/${hitsound}`);
@@ -87,3 +100,16 @@ function closeKeyUpdater() {
 		}
 	}, 1000);
 }
+
+setInterval(() => {
+	let secondsSinceFirstClick = (Date.now() - firstClick) / 1000;
+	let speed = clickTimes.length / secondsSinceFirstClick;
+	// Convert clicks per second to BPM
+	let bpm = (speed / 4) * 60;
+
+	let speedContent = `${speed.toFixed(2)} click/s`;
+	if (speedContent != speedDom.innerHTML) speedDom.innerHTML = speedContent;
+
+	let bpmContent = `${bpm.toFixed(0)} BPM`;
+	if (bpmContent != bpmDom.innerHTML) bpmDom.innerHTML = bpmContent;
+}, 100);
