@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Stream Speed Tester</title>
+	</head>
+	<body>
+		<div class="key-box">
+			<div class="key"></div>
+			<div class="key"></div>
+		</div>
+		<div class="streamers">
+			<div class="streamer-container">
+				<div class="streamer-box"></div>
+				<div class="gradient"></div>
+			</div>
+			<div class="streamer-container">
+				<div class="streamer-box"></div>
+				<div class="gradient"></div>
+			</div>
+		</div>
+		<button onclick="openKeyUpdater()">Edit Keys</button>
+		<div id="key-updater">
+			<div class="card">
+				<h1>Press two different keys</h1>
+				<div class="key-slot"></div>
+				<div class="key-slot"></div>
+			</div>
+		</div>
+		<script src="./js/index.js"></script>
+		<script src="./js/streamer.js"></script>
+	</body>
+</html>
