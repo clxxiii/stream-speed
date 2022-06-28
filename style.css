@@ -1,10 +1,15 @@
+@font-face {
+	font-family: "FredokaOne";
+	src: url("./fonts/FredokaOne-Regular.ttf");
+}
+
 body {
 	background-color: #111111;
-	font-family: sans-serif;
+	font-family: "FredokaOne";
 }
 
 .key {
-	color: #ffffff;
+	color: #333333;
 	font-size: 4.5em;
 	display: flex;
 	justify-content: center;
@@ -16,7 +21,7 @@ body {
 	margin: 0.25em;
 	border: 1px solid #ffffff;
 	border-radius: 0.5em;
-	background-color: #111111;
+	background-color: #ffffff;
 }
 
 .key-box {
