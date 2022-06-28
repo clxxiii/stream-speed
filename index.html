@@ -8,8 +8,14 @@
 		<title>Stream Speed Tester</title>
 	</head>
 	<body>
-		<div id="speed"></div>
-		<div id="bpm"></div>
+		<div class="bg"></div>
+		<h1>Streaming Benchmark</h1>
+		<div class="stats">
+			<h3>Stats</h3>
+			<div id="speed"></div>
+			<div id="bpm"></div>
+		</div>
+		<button onclick="openKeyUpdater()" class="edit-keys">Edit Keys</button>
 		<div class="key-box">
 			<div class="key"></div>
 			<div class="key"></div>
@@ -17,19 +23,18 @@
 		<div class="streamers">
 			<div class="streamer-container">
 				<div class="streamer-box"></div>
-				<div class="gradient"></div>
 			</div>
 			<div class="streamer-container">
 				<div class="streamer-box"></div>
-				<div class="gradient"></div>
 			</div>
 		</div>
-		<button onclick="openKeyUpdater()">Edit Keys</button>
 		<div id="key-updater">
 			<div class="card">
-				<h1>Press two different keys</h1>
-				<div class="key-slot"></div>
-				<div class="key-slot"></div>
+				<h2>Press two different keys</h2>
+				<div class="keyslots">
+					<div class="key-slot"></div>
+					<div class="key-slot"></div>
+				</div>
 			</div>
 		</div>
 		<script src="./js/index.js"></script>

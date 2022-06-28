@@ -4,16 +4,35 @@ let keyUpdater = document.getElementById("key-updater");
 let keySlots = document.getElementsByClassName("key-slot");
 let speedDom = document.getElementById("speed");
 let bpmDom = document.getElementById("bpm");
-let keyUp = [true, true];
+let keysUp = [true, true];
 let hitsound = "key.wav";
 let updatingKeys = false;
 let clickTimes = [];
 let firstClick = 0;
 
+window.addEventListener("keyup", keyUp);
+window.addEventListener("keydown", keyDown);
+
 let keys = JSON.parse(localStorage.getItem("keys")) || ["Z", "X"];
 updateKeys(keys);
 
-window.addEventListener("keydown", (key) => {
+function keyUp(key) {
+	let keyPressed = key.key.toUpperCase();
+
+	if (keys.includes(keyPressed)) {
+		let keyIndex = keys.indexOf(keyPressed);
+
+		let streamer = document.createElement("div");
+		streamer.classList.add("streamer");
+		streamer.style.backgroundColor = "#00000000";
+		streamerBoxes[keyIndex].appendChild(streamer);
+
+		keyDom[keyIndex].classList.remove("pressed");
+		keysUp[keyIndex] = true;
+	}
+}
+
+function keyDown(key) {
 	let keyPressed = key.key.toUpperCase();
 	if (updatingKeys) {
 		if (keys.includes(keyPressed)) return;
@@ -30,7 +49,7 @@ window.addEventListener("keydown", (key) => {
 	if (!keys.includes(keyPressed)) return;
 
 	let keyIndex = keys.indexOf(keyPressed);
-	if (!keyUp[keyIndex]) return;
+	if (!keysUp[keyIndex]) return;
 
 	if (
 		!firstClick ||
@@ -53,24 +72,8 @@ window.addEventListener("keydown", (key) => {
 	streamer.style.backgroundColor = "#FFFFFF";
 	streamerBoxes[keyIndex].appendChild(streamer);
 
-	keyUp[keyIndex] = false;
-});
-
-window.addEventListener("keyup", (key) => {
-	let keyPressed = key.key.toUpperCase();
-
-	if (keys.includes(keyPressed)) {
-		let keyIndex = keys.indexOf(keyPressed);
-
-		let streamer = document.createElement("div");
-		streamer.classList.add("streamer");
-		streamer.style.backgroundColor = "#111111";
-		streamerBoxes[keyIndex].appendChild(streamer);
-
-		keyDom[keyIndex].classList.remove("pressed");
-		keyUp[keyIndex] = true;
-	}
-});
+	keysUp[keyIndex] = false;
+}
 
 function updateKeys(keyInput) {
 	keys = keyInput;
