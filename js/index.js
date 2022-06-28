@@ -42,7 +42,7 @@ function keyDown(key) {
 		if (keys.length >= 2) {
 			updateKeys(keys);
 			updatingKeys = false;
-			setTimeout(closeKeyUpdater, 1000);
+			setTimeout(closeKeyUpdater, 300);
 		}
 		return;
 	}
@@ -90,14 +90,14 @@ function openKeyUpdater() {
 	keyUpdater.style.opacity = 1;
 	keyUpdater.style.height = "100%";
 	keyUpdater.style.width = "100%";
+	keyUpdater.style.pointerEvents = "all";
 }
 
 function closeKeyUpdater() {
 	updatingKeys = false;
 	keyUpdater.style.opacity = 0;
+	keyUpdater.style.pointerEvents = "none";
 	setTimeout(() => {
-		keyUpdater.style.height = "0%";
-		keyUpdater.style.width = "0%";
 		for (let i = 0; i < keySlots.length; i++) {
 			keySlots[i].innerHTML = "";
 		}
@@ -115,4 +115,4 @@ setInterval(() => {
 
 	let bpmContent = `${bpm.toFixed(0)} BPM`;
 	if (bpmContent != bpmDom.innerHTML) bpmDom.innerHTML = bpmContent;
-}, 100);
+}, 50);

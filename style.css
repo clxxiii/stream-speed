@@ -9,7 +9,7 @@
 }
 
 :root {
-	--key-font-size: 3em;
+	--key-font-size: 1.75em;
 }
 
 * {
@@ -20,16 +20,15 @@
 body {
 	font-family: "Quicksand";
 	font-size: 2em;
-	width: 100vw;
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
 	align-items: center;
 }
 
 .bg {
 	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: -1;
@@ -79,7 +78,6 @@ body {
 	top: 0;
 	width: 1.5em;
 	overflow: hidden;
-	/* background-color: #11ff11; */
 	mask-image: url("./static/mask.svg");
 	mask-size: 400px;
 	-webkit-mask-image: url("./static/mask.svg");
@@ -104,16 +102,15 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 0%;
-	height: 0%;
 	opacity: 0;
 	z-index: 1;
 	background-color: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(20px);
 	transition: opacity 0.5s ease-in-out;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	pointer-events: none;
 }
 
 #key-updater .card {
@@ -168,7 +165,7 @@ button {
 	font-family: "FredokaOne";
 	border-radius: 0.5em;
 	border: solid 4px white;
-	z-index: 2;
+	/* z-index: 2; */
 	margin: 0.25em;
 	cursor: pointer;
 }
@@ -188,7 +185,7 @@ button:hover {
 }
 
 h1 {
-	margin-bottom: 1em;
+	margin-bottom: 0.5em;
 	font-size: 3em;
 	font-weight: normal;
 	color: white;
