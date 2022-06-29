@@ -44,7 +44,7 @@ function chartUpdateInterval() {
 		clearInterval(chartInterval);
 	}
 
-	let secondsSinceFirstClick = Math.ceil((Date.now() - firstClick) / 1000);
+	let secondsSinceFirstClick = Math.round((Date.now() - firstClick) / 1000);
 	chart.data.labels.push(secondsSinceFirstClick);
 	let speed = clickTimes.length / secondsSinceFirstClick;
 	// Convert clicks per second to BPM
