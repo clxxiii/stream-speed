@@ -6,6 +6,7 @@ let speedDom = document.getElementById("speed");
 let bpmDom = document.getElementById("bpm");
 let settings = document.getElementById("settings");
 let bg = document.getElementById("bg");
+let chartDom = document.getElementById("chart");
 
 let keysUp = [true, true];
 let hitsound = "key.wav";
@@ -57,11 +58,14 @@ function keyDown(key) {
 
 	if (
 		!firstClick ||
-		clickTimes[clickTimes.length - 1] + firstClick + 2000 <= Date.now()
+		clickTimes[clickTimes.length - 1] + firstClick + 1000 <= Date.now()
 	) {
 		firstClick = Date.now();
 		clickTimes = [];
 		clickTimes.push(0);
+		chart.data.labels = [];
+		chart.data.datasets[0].data = [];
+		chartInterval = setInterval(chartUpdateInterval, 1000);
 	} else {
 		clickTimes.push(Date.now() - firstClick);
 	}
@@ -91,6 +95,8 @@ function updateKeys(keyInput) {
 function openKeyUpdater() {
 	updatingKeys = true;
 	keys = [];
+	closeSettings();
+	keyUpdater.style.visibility = "visible";
 	keyUpdater.style.opacity = 1;
 	keyUpdater.style.pointerEvents = "all";
 }
@@ -100,13 +106,15 @@ function closeKeyUpdater() {
 	keyUpdater.style.opacity = 0;
 	keyUpdater.style.pointerEvents = "none";
 	setTimeout(() => {
+		keyUpdater.style.visibility = "hidden";
 		for (let i = 0; i < keySlots.length; i++) {
 			keySlots[i].innerHTML = "";
 		}
-	}, 1000);
+	}, 500);
 }
 
 function openSettings() {
+	settings.style.visibility = "visible";
 	settings.style.opacity = 1;
 	settings.style.pointerEvents = "all";
 }
@@ -114,6 +122,9 @@ function openSettings() {
 function closeSettings() {
 	settings.style.opacity = 0;
 	settings.style.pointerEvents = "none";
+	setTimeout(() => {
+		settings.style.visibility = "hidden";
+	}, 500);
 }
 
 setInterval(() => {

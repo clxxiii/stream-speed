@@ -3,7 +3,7 @@ setInterval(() => {
 		if (streamerBox.childElementCount > 0) {
 			let streamer =
 				streamerBox.children[streamerBox.childElementCount - 1];
-			streamer.style.height = streamer.clientHeight + 10 + "px";
+			streamer.style.height = streamer.clientHeight + 5 + "px";
 		}
 		if (streamerBox.childElementCount > 20) {
 			for (let i = streamerBox.childElementCount; i > 20; i--) {
