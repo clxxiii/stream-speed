@@ -66,6 +66,7 @@ function keyDown(key) {
 		chart.data.labels = [];
 		chart.data.datasets[0].data = [];
 		chartInterval = setInterval(chartUpdateInterval, 1000);
+		chartUpdateInterval();
 	} else {
 		clickTimes.push(Date.now() - firstClick);
 	}
